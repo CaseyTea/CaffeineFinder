@@ -1,8 +1,11 @@
 package edu.orangecoastcollege.cs273.caffeinefinder;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -88,7 +91,15 @@ public class CaffeineListActivity extends AppCompatActivity implements OnMapRead
 
     }
 
-    public void viewLocationDetails(View v) {
+    public void viewLocationDetails(View v)
+    {
+        if (v instanceof LinearLayout)
+        {
+            LinearLayout selectedLayout = (LinearLayout) v;
+            Location selectedLocation = (Location) selectedLayout.getTag();
+            Log.i("Caffine Finder", selectedLocation.toString());
+            Intent detailsInent = new Intent(this, Location)
+        }
 
     }
 
@@ -101,3 +112,25 @@ public class CaffeineListActivity extends AppCompatActivity implements OnMapRead
     // TODO: (4) Create a viewLocationsDetails(View v) method to create a new Intent to the
     // TODO: CaffeineDetailsActivity class, sending it the selectedLocation the user picked from the locationsListView
 }
+
+/*
+
+public void viewGameDetails(View view) {
+        if (view instanceof LinearLayout) {
+            LinearLayout selectedLayout = (LinearLayout) view;
+            Game selectedGame = (Game) selectedLayout.getTag();
+            Log.i("Gamers Delight", selectedGame.toString());
+            Intent detailsIntent = new Intent(this, GameDetailsActivity.class);
+
+            /* OLD WAY
+            detailsIntent.putExtra("Name", selectedGame.getName());
+            detailsIntent.putExtra("Description", selectedGame.getDescription());
+            detailsIntent.putExtra("Rating", selectedGame.getRating());
+            detailsIntent.putExtra("ImageName", selectedGame.getImageName());
+            *
+// NEW WAY
+            detailsIntent.putExtra("SelectedGame", selectedGame);
+                    startActivity(detailsIntent);
+                    }
+                    }
+ */
